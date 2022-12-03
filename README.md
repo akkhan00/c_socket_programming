@@ -8,7 +8,7 @@ this is how Server and Client work in programming.
 
 <br>
 
-![img](./img/Socket_server-1.png)
+![img](./Socket_server-1.png)
 
 <br>
 
