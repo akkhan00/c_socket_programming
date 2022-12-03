@@ -1,0 +1,7 @@
+*
+!*.c
+!Makefile
+!README.md
+!.gitignore
+
+!img/Socket_server-1.png
