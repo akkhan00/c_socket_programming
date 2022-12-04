@@ -39,5 +39,8 @@ to run client type this command
 
 ## Client Server Chat Application
 
-<img src="./ClientChat.png" style="margin-right: 30px">
+# Server
+<img src="./ClientChat.png">
+
+# Client
 <img src="./ServerChat.png">
