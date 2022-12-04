@@ -16,7 +16,10 @@ int main(void)
     struct sockaddr_in address; // server address
 
     // create a server socket
-    server_socket = socket(AF_INET, SOCK_STREAM, 0); // 0 is for protocol
+    server_socket = socket(AF_INET, SOCK_STREAM, 0); // 0 use for default protocol
+    if(server_socket <0){
+        printf("Can't making a Socket\n");
+    }
 
     // add info to address structure
     address.sin_family = AF_INET;                     // address family of internet
@@ -24,14 +27,23 @@ int main(void)
     address.sin_addr.s_addr = inet_addr("127.0.0.1"); // you can put your own ip
 
     // Bind to server socket
-    bind(server_socket, (const struct sockaddr *)&address, sizeof(address));
+    int status = bind(server_socket, (const struct sockaddr *)&address, sizeof(address));
+    if(status < 0){
+        printf("Can't Bind\n"); // make any message you want
+    }
 
     // listen on server socket
-    listen(server_socket, 5); // 5 connections
+    if(listen(server_socket, 5)<0){
+        printf("Can't listening\n");
+    }; // 5 connections
+    
     printf(Mango "Server listening on port %d\n", PORT);
 
     // accept connection
     client_socket = accept(server_socket, NULL, NULL);
+    if(client_socket < 0){
+        printf("Can't accpeting..\n");
+    }
     // if client connct i will print message on terminal
     printf(Green "Client connected!\n" Rest);
 
@@ -47,6 +59,7 @@ int main(void)
         if (strcmp(sendBuffer, "exit\n\0") == 0)
         {
             printf(Red "Exiting Program!\n" Rest);
+            // free up the port by closeing the socket
             close(server_socket);
             break;
         }

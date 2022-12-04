@@ -17,6 +17,9 @@ int main(void)
 
     // create a socket
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if(server_socket < 0){
+        printf("Can't Creataing Socket\n");
+    }
 
     // add server info to struct server_address
     server_address.sin_family = AF_INET;
@@ -24,7 +27,10 @@ int main(void)
     server_address.sin_addr.s_addr = inet_addr("127.0.0.1"); // The inet_addr function converts a string containing an IPv4 dotted-decimal address into a proper address for the IN_ADDR structure
 
     // connect to server
-    connect(server_socket, (const struct sockaddr *)&server_address, sizeof(server_address));
+    if(connect(server_socket, (const struct sockaddr *)&server_address, sizeof(server_address)) < 0){
+        printf("Can't connecting\n");
+    }
+
 
     while (1)
     {
