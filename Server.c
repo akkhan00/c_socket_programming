@@ -5,6 +5,7 @@
 #include <arpa/inet.h>  // for sockaddr_in, inet_addr
 #include <string.h>     // for compare two string
 #include <unistd.h>     // for close
+#include "colortext.h"  // to add color to print statement
 
 #define PORT 8877
 
@@ -27,24 +28,25 @@ int main(void)
 
     // listen on server socket
     listen(server_socket, 5); // 5 connections
+    printf(Mango "Server listening on port %d\n", PORT);
 
     // accept connection
     client_socket = accept(server_socket, NULL, NULL);
     // if client connct i will print message on terminal
-    printf("Client connected!\n");
+    printf(Green "Client connected!\n" Rest);
 
     // use while true loop to connect for long time
     while (1)
     {
         // send message from server to client socket
         char sendBuffer[1024];
-        printf("Enter Message: ");
+        printf(Yellow "Enter Message: " Rest);
         fgets(sendBuffer, 1024, stdin);
         send(client_socket, sendBuffer, sizeof(sendBuffer), 0);
         // check if the command equal to exit then close the porgram
         if (strcmp(sendBuffer, "exit\n\0") == 0)
         {
-            printf("Exiting Program!\n");
+            printf(Red "Exiting Program!\n" Rest);
             close(server_socket);
             break;
         }
@@ -53,7 +55,7 @@ int main(void)
         char printBuffer[1024]; // buffer to print on termainl
         recv(client_socket, printBuffer, sizeof(printBuffer), 0);
         // print the recived message
-        printf("Reviced Msg: %s\n", printBuffer);
+        printf(Blue "Reviced Msg: " Rest "%s\n", printBuffer);
     }
 
     return 0;

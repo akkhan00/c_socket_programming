@@ -3,6 +3,7 @@
 #include <arpa/inet.h>  // for sockaddr_in
 #include <string.h>     // for string comparison
 #include <unistd.h>     // close the connection
+#include "colortext.h"  // for Red, Green, Blue, Yellow, Rest
 
 #define PORT 8877 // same port as in server Or server port which you want to connect
 
@@ -30,18 +31,18 @@ int main(void)
         // recive data from server
         char reciveBuffer[1024];
         recv(server_socket, reciveBuffer, sizeof(reciveBuffer), 0);
-        printf("Recived: %s\n", reciveBuffer);
+        printf(Blue "Recived: " Rest "%s\n", reciveBuffer);
         // check if the command is equal to exit then close the connection
         if (strcmp(reciveBuffer, "exit\n\0") == 0)
         {
-            printf("Exiting Program!\n");
+            printf(Red "Exiting Program!\n" Rest);
             close(server_socket);
             break;
         }
 
         // send data to server
         char sendBuffer[1024];
-        printf("Enter message: ");
+        printf(Yellow "Enter message: " Rest);
         fgets(sendBuffer, 1024, stdin);
         send(server_socket, sendBuffer, sizeof(sendBuffer), 0);
     }

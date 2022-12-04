@@ -1,0 +1,8 @@
+#define Rest "\x1B[0m"
+#define Red "\x1B[31m"
+#define Green "\x1B[32m"
+#define Yellow "\x1B[33m"
+#define Blue "\x1B[34m"
+#define Mango "\x1B[35m"
+#define Cyan "\x1B[36m"
+#define White "\x1B[37m"

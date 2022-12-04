@@ -3,4 +3,5 @@
 !Makefile
 !README.md
 !.gitignore
+!colortext.h
 !Socket_server-1.png
